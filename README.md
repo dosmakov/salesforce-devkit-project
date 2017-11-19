@@ -20,7 +20,7 @@ You have to create seporate \*.properties file per each branch. So the brnaches 
 # Usage
 
 ```
-ant <target\>
+ant <targeg>
 ```
 
 Ant targets:
