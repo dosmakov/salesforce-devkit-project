@@ -1,0 +1,4 @@
+# *.properties
+.src
+.DS_Store
+.ant-targets-build.xml
