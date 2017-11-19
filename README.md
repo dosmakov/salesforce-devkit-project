@@ -2,8 +2,8 @@
 The repository can be used to initiate a new salesforce.com apex development project. It uses ant-salesforce and git for continuous development.
 
 # References links:
-1. [Force.com Migration Tool Guide)(https://developer.salesforce.com/docs/atlas.en-us.daas.meta/daas/meta_development.htm)
-2. [Metadata API Developer Guide)(https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_intro.htm)
+1. [Force.com Migration Tool Guide](https://developer.salesforce.com/docs/atlas.en-us.daas.meta/daas/meta_development.htm)
+2. [Metadata API Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_intro.htm)
 3. [Apace Ant](http://ant.apache.org/)
 
 # Configuration
