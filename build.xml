@@ -1,0 +1,72 @@
+<project name="Sample usage of Salesforce Ant tasks" default="test" basedir="." xmlns:sf="antlib:com.salesforce">
+
+
+    <exec executable="git" failonerror="true" outputproperty="git.current.branch">
+      <arg line="rev-parse --abbrev-ref HEAD" />
+    </exec>
+    
+    <condition property="git.branch" value="${git.current.branch}">
+        <not><isset property="git.branch"/></not>
+    </condition>
+
+    <exec executable="git" failonerror="true">
+      <arg line="checkout ${git.branch}" />
+    </exec>
+
+    <property file="${git.branch}.properties"/>
+    <property environment="env"/>
+    
+    <!-- Setting default value for username, password and session id properties to empty string 
+         so unset values are treated as empty. Without this, ant expressions such as ${sf.username}
+         will be treated literally.
+    -->
+    <condition property="sf.username" value=""> <not> <isset property="sf.username"/> </not> </condition>
+    <condition property="sf.password" value=""> <not> <isset property="sf.password"/> </not> </condition>
+    <condition property="sf.sessionId" value=""> <not> <isset property="sf.sessionId"/> </not> </condition>
+
+    <taskdef resource="com/salesforce/antlib.xml" uri="antlib:com.salesforce">
+        <classpath>
+            <pathelement location="ant-salesforce.jar" />          
+        </classpath>
+    </taskdef>
+  
+    <target name="test">
+      <echo message="sf.username : ${sf.username}" />
+      <echo message="git.branch  : ${git.branch}" />
+    </target>
+
+    <target name="retrieve">
+      <mkdir dir=".src" />
+      <sf:retrieve username="${sf.username}" password="${sf.password}" sessionId="${sf.sessionId}" serverurl="${sf.serverurl}" maxPoll="${sf.maxPoll}" retrieveTarget=".src" unpackaged="src/package.xml"/>
+      <delete dir="src" />
+      <move file=".src" tofile="src" />
+    </target>
+
+    <target name="remove">
+      <sf:deploy username="${sf.username}" password="${sf.password}" sessionId="${sf.sessionId}" serverurl="${sf.serverurl}" maxPoll="${sf.maxPoll}" deployRoot="remove" rollbackOnError="true"/>
+    </target>
+
+    <target name="deploy">
+      <sf:deploy username="${sf.username}" password="${sf.password}" sessionId="${sf.sessionId}" serverurl="${sf.serverurl}" maxPoll="${sf.maxPoll}" deployRoot="src" rollbackOnError="true"/>
+    </target>
+
+    <target name="commit" depends="_is-set-commit-message">
+      <exec executable="git" failonerror="true">
+        <arg line="add ." />
+      </exec>
+
+      <exec executable="git" failonerror="true">
+        <arg line="commit -am" />
+        <arg value="Deployment: ${git.message}" />
+      </exec> 
+    </target>
+    
+    <target name="push" depends="_is-set-commit-message,deploy,remove,retrieve,commit" />
+    
+    <target name="_is-set-commit-message">
+      <fail message="Please enter git commit message in git.message">
+         <condition><not><isset property="git.message"/></not></condition>
+      </fail>
+    </target>
+
+</project>
