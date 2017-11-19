@@ -19,6 +19,10 @@ You have to create seporate \*.properties file per each branch. So the brnaches 
 
 # Usage
 
+```
+ant <target\>
+```
+
 Ant targets:
 
 1. **deploy** - deploys changes to the Salesforce.com instance
