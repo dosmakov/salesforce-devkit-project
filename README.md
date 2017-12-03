@@ -1,5 +1,5 @@
 # salesforce-devkit-project
-The repository can be used to initiate a new salesforce.com apex development project. It uses ant-salesforce and git for continuous development.
+The repository can be used to initiate a new salesforce.com apex development project. It uses ant-salesforce and git.
 
 # Reference links:
 1. [Force.com Migration Tool Guide](https://developer.salesforce.com/docs/atlas.en-us.daas.meta/daas/meta_development.htm)
