@@ -1,5 +1,10 @@
 # salesforce-devkit-project
-The repository can be used to initiate a new salesforce.com apex development project. It uses ant-salesforce and git.
+The repository can be used to initiate a new Salesforce.com development project. It uses ant-salesforce and git.
+
+# Note about Salesforce Developer Experience (DX)
+The repository was an attempt to use git in the Salesforce.com development life-cycle before Salesforce DX was announced. Salesforce Developer Experience (DX) is a new way to manage and develop apps on the Force.com platform across their entire life cycle. It brings together the best of Force.com to enable source-driven development, team collaboration with governance, and new levels of agility for custom app development on Salesforce.
+
+Go through  [Get Started with Salesforce DX](https://trailhead.salesforce.com/trails/sfdx_get_started) trailhead for more information.
 
 # Reference links:
 1. [Force.com Migration Tool Guide](https://developer.salesforce.com/docs/atlas.en-us.daas.meta/daas/meta_development.htm)
